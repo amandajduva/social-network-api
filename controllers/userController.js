@@ -21,9 +21,10 @@ const userController = {
     // post a new user
     async createUser(req, res) {
         try {
-            
+            const user = await User.create(req.body);
+            res.json(user);
         } catch (error) {
-            
+            res.status(500).json(error)
         }
     },
     // update a user by its id
@@ -41,7 +42,7 @@ const userController = {
 
             res.json(user);
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).json(error);
         }
     },
 
