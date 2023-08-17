@@ -32,7 +32,7 @@ const userController = {
             const user = await User.findOneAndUpdate(
                 { _id: req.params.id },
                 { $set: req.body },
-                { new: true }
+                { runValidators: true, new: true }
             );
 
             if (!user) {
@@ -65,9 +65,18 @@ const userController = {
     // delete to remove a friend from a user's friend list
     async removeFriend(req, res) {
         try {
-            
+            const friend = await  User.findOneAndUpdate(
+                { _id: params.userId },
+                { $pull: { friends: params.friendId } },
+                { runValidators: true, new: true }
+            );
+
+            if (!friend) {
+                return res.status(404).json({ message: "No user with this id!" });
+              }
+              res.json(friend);
         } catch (error) {
-            
+            res.status(500).json(error);
         }
     }
 }
