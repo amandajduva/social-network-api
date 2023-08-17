@@ -11,9 +11,21 @@ const userController = {
         }
     },
     // get user by id and pupulate thought and friend data
-
+    async getUserById(req, res) {
+        try {
+            
+        } catch (error) {
+            
+        }
+    },
     // post a new user
-
+    async createUser(req, res) {
+        try {
+            
+        } catch (error) {
+            
+        }
+    },
     // update a user by its id
     async updateUser(req, res) {
         try {
@@ -35,10 +47,29 @@ const userController = {
 
     // remove user by its id 
         // bonus remove user's associated thoughts when deleted
-
+    async removeUser(req, res) {
+        try {
+            
+        } catch (error) {
+            
+        }
+    },
     // add a new friend to a user's friend list
-
+    async addFriend(req, res) {
+        try {
+            
+        } catch (error) {
+            
+        }
+    },
     // delete to remove a friend from a user's friend list
+    async removeFriend(req, res) {
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
 }
 
 module.exports = userController;
