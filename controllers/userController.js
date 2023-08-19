@@ -15,6 +15,7 @@ module.exports = {
     async getUserById(req, res) {
         try {
             const singleUser = await User.findOne( { _id: req.params.id })
+            .populate("thoughts")
             .select("-__v");
             return res.json(singleUser);
         } catch (error) {
