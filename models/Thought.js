@@ -22,13 +22,14 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now(),
-            get: () => new Date().toLocaleDateString()
+            get: (date) => new Date(date).toLocaleDateString()
         },
     },
     {
         toJSON: {
             getters: true,
         },
+        _id: false,
         id: false,
     }
 );
@@ -43,7 +44,7 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now(),
-            get: () => new Date().toLocaleDateString()
+            get: (date) => new Date(date).toLocaleDateString()
         },
         username: {
             type: String,

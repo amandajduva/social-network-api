@@ -15,7 +15,7 @@ module.exports = {
     async getUserById(req, res) {
         try {
             const singleUser = await User.findOne( { _id: req.params.id })
-            .populate("thoughts")
+            .populate("thoughts").populate("friends")
             .select("-__v");
             return res.json(singleUser);
         } catch (error) {
@@ -28,7 +28,7 @@ module.exports = {
             const user = await User.create(req.body);
             res.json(user);
         } catch (error) {
-            res.status(500).json(error)
+            res.status(500).json(error);
         }
     },
     // update a user by its id
@@ -82,7 +82,7 @@ module.exports = {
         try {
             const friend = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $addToSet: { friends: req.params.friendsId } },
+                { $addToSet: { friends: req.params.friendId } },
                 { runValidators: true, new: true }
             );
 
