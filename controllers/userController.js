@@ -4,7 +4,8 @@ module.exports = {
     // get all users
     async getUsers(req, res) {
         try {
-            const users = await User.find();
+            const users = await User.find()
+            .select("-__v");
             return res.json(users);
         } catch (error) {
             res.status(500).json(error);
@@ -13,9 +14,11 @@ module.exports = {
     // get user by id and pupulate thought and friend data
     async getUserById(req, res) {
         try {
-            
+            const singleUser = await User.findOne( { _id: params.id })
+            .select("-__v");
+            return res.json(singleUser);
         } catch (error) {
-            
+            res.status(500).json(error);
         }
     },
     // post a new user

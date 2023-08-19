@@ -1,5 +1,4 @@
 const { Schema, model, Types } = require("mongoose");
-// new Date().toLocaleDateString()
 
 const reactionSchema = new Schema(
     {
@@ -22,8 +21,8 @@ const reactionSchema = new Schema(
 
         createdAt: {
             type: Date,
-            // default: 
-            // get: 
+            default: Date.now(),
+            get: () => new Date().toLocaleDateString()
       },
     },
     {
@@ -43,8 +42,8 @@ const thoughtSchema = new Schema(
       },
       createdAt: {
         type: Date,
-        // default: 
-        // get: 
+        default: Date.now(),
+        get: () => new Date().toLocaleDateString()
       },
       username: {
         type: String,
