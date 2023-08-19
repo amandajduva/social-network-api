@@ -54,7 +54,25 @@ module.exports = {
         // bonus remove user's associated thoughts when deleted
     async removeUser(req, res) {
         try {
-            
+            const removeUser = await User.findByIdAndDelete(
+                { _id: req.params.id }
+            )
+
+            if (!removeUser) {
+                return res.status(404).json({ message: 'No such user exists' })
+            }
+
+            const removeThoughts = await Thought.deleteMany(
+                { _id: { $in: removeUser.thoughts } }
+            )
+
+            if (!removeThoughts) {
+                return res.status(404).json({
+                    message: 'User deleted, but no thoughts found',
+                });
+            }
+
+            res.json({ message: "User and associated thoughts deleted!" });
         } catch (error) {
             res.status(500).json(error);
         }
