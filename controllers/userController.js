@@ -11,10 +11,10 @@ module.exports = {
             res.status(500).json(error);
         }
     },
-    // get user by id and pupulate thought and friend data
+    // get user by id and populate thought and friend data
     async getUserById(req, res) {
         try {
-            const singleUser = await User.findOne( { _id: params.id })
+            const singleUser = await User.findOne( { _id: req.params.id })
             .select("-__v");
             return res.json(singleUser);
         } catch (error) {
@@ -55,23 +55,35 @@ module.exports = {
         try {
             
         } catch (error) {
-            
+            res.status(500).json(error);
         }
     },
     // add a new friend to a user's friend list
     async addFriend(req, res) {
         try {
-            
+            const friend = await User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $addToSet: { friends: req.params.friendsId } },
+                { runValidators: true, new: true }
+            );
+
+            if (!friend) {
+                return res
+                    .status(404)
+                    .json({ message: "No friend found with that ID :(" })
+            }
+
+            res.json(friend);
         } catch (error) {
-            
+            res.status(500).json(error);
         }
     },
     // delete to remove a friend from a user's friend list
     async removeFriend(req, res) {
         try {
             const friend = await  User.findOneAndUpdate(
-                { _id: params.userId },
-                { $pull: { friends: params.friendId } },
+                { _id: req.params.userId },
+                { $pull: { friends: req.params.friendId } },
                 { runValidators: true, new: true }
             );
 
