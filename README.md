@@ -5,10 +5,10 @@ An API for a social network web application where users can share their thoughts
 
 Please be sure to install all dependencies `npm install` before running the server. Utilize the command line on your machine to run the server: `npm start`.
 
-[Walkthrough Video]()
+[Walkthrough Video](https://watch.screencastify.com/v/T4PXbH546N6VsO28J703)
 
 Screenshot of application test example in Insomnia:
-![screenshot of insomnia]()
+![screenshot of insomnia](./images/social-network-api-screenshot.png)
 
 ## Credits
 
