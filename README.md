@@ -8,7 +8,7 @@ Please be sure to install all dependencies `npm install` before running the serv
 [Walkthrough Video]()
 
 Screenshot of application test example in Insomnia:
-![deployed application]()
+![screenshot of insomnia]()
 
 ## Credits
 
